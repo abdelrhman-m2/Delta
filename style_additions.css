@@ -1,0 +1,554 @@
+/* ==========================================
+   إضافات CSS للصور - أضف دي في نهاية style.css
+   ========================================== */
+
+/* Car Image Styles */
+.car-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+.car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.car-card:hover .car-image {
+    transform: scale(1.05);
+}
+
+.car-image-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.car-image-fallback i {
+    font-size: 48px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mechanic Image Styles */
+.mechanic-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.mechanic-avatar-fallback {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+}
+
+/* Favorite Button */
+.favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.favorite-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.favorite-btn.active i {
+    color: #e74c3c;
+}
+
+.favorite-btn i {
+    color: #95a5a6;
+    font-size: 18px;
+}
+
+/* Rental Price Badge */
+.rental-price {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Support */
+.dark-mode .car-image-container {
+    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+}
+
+.dark-mode .favorite-btn {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .favorite-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.dark-mode .rental-price {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+/* RTL Support */
+[dir="rtl"] .favorite-btn {
+    right: auto;
+    left: 15px;
+}
+
+[dir="rtl"] .rental-price {
+    left: auto;
+    right: 15px;
+}
+
+[dir="rtl"] .mechanic-avatar {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+[dir="rtl"] .mechanic-avatar-fallback {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+/* ==========================================
+   Hero Section Image Fix
+   ========================================== */
+
+.hero-car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.dark-mode .hero-car-image {
+    opacity: 0.2;
+}
+
+/* Alternative: Full background image style */
+.hero-full-bg {
+    background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+/* ==========================================
+   Hero Section مع صورة خلفية + Blur أسود خفيف
+   ========================================== */
+
+.hero-fullbg {
+    position: relative;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+/* طبقة سوداء شفافة خفيفة مع Blur */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.35); /* أسود خفيف 35% */
+    backdrop-filter: blur(2px); /* blur خفيف جداً */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.hero-fullbg .hero-text {
+    color: white;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-fullbg .hero-text h1 {
+    font-size: 4.5rem;
+    margin-bottom: 25px;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+    font-weight: 800;
+    line-height: 1.2;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-fullbg .hero-text p {
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1.2s ease-out;
+}
+
+/* Search Box في نص الصفحة */
+.hero-fullbg .search-box {
+    display: flex;
+    gap: 12px;
+    margin: 0 auto 60px;
+    max-width: 700px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    border-radius: 60px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    animation: fadeInUp 1.4s ease-out;
+}
+
+.hero-fullbg .search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 20px 35px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    color: var(--text-dark);
+    border-radius: 60px;
+}
+
+.hero-fullbg .search-input::placeholder {
+    color: #999;
+}
+
+.hero-fullbg .search-box .btn-primary {
+    border-radius: 60px;
+    padding: 20px 45px;
+    white-space: nowrap;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.hero-fullbg .search-box .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+}
+
+/* Hero Stats */
+.hero-fullbg .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeInUp 1.6s ease-out;
+}
+
+.hero-fullbg .stat {
+    text-align: center;
+    padding: 30px 25px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.hero-fullbg .stat:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-fullbg .stat h3 {
+    font-size: 3.2rem;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 800;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.hero-fullbg .stat p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.05rem;
+    margin: 0;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تأثير Parallax على الخلفية */
+@media (min-width: 769px) {
+    .hero-fullbg {
+        background-attachment: fixed;
+    }
+}
+
+/* Dark Mode */
+.dark-mode .hero-fullbg {
+    background-blend-mode: darken;
+}
+
+.dark-mode .hero-overlay {
+    background: rgba(0, 0, 0, 0.5); /* أغمق شوية في الـ dark mode */
+    backdrop-filter: blur(3px);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .hero-fullbg {
+        min-height: 600px;
+        background-attachment: scroll;
+    }
+    
+    .hero-fullbg .hero-text h1 {
+        font-size: 3.2rem;
+    }
+    
+    .hero-fullbg .hero-text p {
+        font-size: 1.3rem;
+        margin-bottom: 40px;
+    }
+    
+    .hero-fullbg .search-box {
+        max-width: 90%;
+    }
+    
+    .hero-fullbg .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        max-width: 90%;
+    }
+    
+    .hero-fullbg .stat {
+        padding: 20px 15px;
+    }
+    
+    .hero-fullbg .stat h3 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-fullbg .stat p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-fullbg {
+        min-height: 550px;
+    }
+    
+    .hero-fullbg .hero-text h1 {
+        font-size: 2.8rem;
+    }
+    
+    .hero-fullbg .hero-text p {
+        font-size: 1.2rem;
+    }
+    
+    .hero-fullbg .search-box {
+        flex-direction: column;
+        border-radius: 25px;
+        padding: 12px;
+        max-width: 95%;
+    }
+    
+    .hero-fullbg .search-input,
+    .hero-fullbg .search-box .btn-primary {
+        border-radius: 20px;
+        padding: 18px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-fullbg {
+        min-height: 500px;
+    }
+    
+    .hero-fullbg .hero-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-fullbg .hero-text p {
+        font-size: 1.05rem;
+        margin-bottom: 30px;
+    }
+    
+    .hero-fullbg .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .hero-fullbg .stat {
+        padding: 18px;
+    }
+    
+    .hero-fullbg .stat h3 {
+        font-size: 2rem;
+    }
+    
+    .hero-fullbg .stat p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ==========================================
+   صور خلفية بديلة
+   ========================================== */
+
+/* سيارة رياضية حمراء */
+.hero-bg-sports {
+    background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&h=1080&fit=crop');
+}
+
+/* بورش فضية */
+.hero-bg-porsche {
+    background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&h=1080&fit=crop');
+}
+
+/* أستون مارتن */
+.hero-bg-aston {
+    background-image: url('https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=1920&h=1080&fit=crop');
+}
+
+/* BMW */
+.hero-bg-bmw {
+    background-image: url('https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1920&h=1080&fit=crop');
+}
+
+/* Mercedes */
+.hero-bg-mercedes {
+    background-image: url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1920&h=1080&fit=crop');
+}
+
+/* لامبورجيني */
+.hero-bg-lambo {
+    background-image: url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&h=1080&fit=crop');
+}
+
+/* فيراري */
+.hero-bg-ferrari {
+    background-image: url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1920&h=1080&fit=crop');
+}
+
+/* Range Rover */
+.hero-bg-range {
+    background-image: url('https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1920&h=1080&fit=crop');
+}
+
+
+
+.slider-container {
+    position: relative;
+    padding: 20px 50px;
+    overflow: hidden;
+}
+
+.engineers-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px;
+    scrollbar-width: none; /* لإخفاء السكرول في فيرفوكس */
+}
+
+.engineers-slider::-webkit-scrollbar {
+    display: none; /* لإخفاء السكرول في كروم */
+}
+
+.engineer-card {
+    min-width: 280px; /* عرض كل كارت */
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+.engineer-card:hover {
+    transform: translateY(-10px);
+}
+
+.engineer-img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #667eea;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #667eea;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 5;
+    transition: 0.3s;
+}
+
+.slider-btn:hover { background: #764ba2; }
+.slider-btn.prev { right: 5px; }
+.slider-btn.next { left: 5px; }

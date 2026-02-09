@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DELTA CAR - منصة بيع وشراء واستئجار السيارات الفاخرة">
+    <meta name="keywords" content="سيارات, شراء السيارات, بيع السيارات, استئجار السيارات">
+    <title>DELTA CAR - منصة السيارات الأولى</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="style_additions.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <i class="fas fa-car-alt"></i>
+                    <span>DELTA CAR</span>
+                </div>
+
+                <!-- Toggle Menu Button -->
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- Navigation Links -->
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#cars" class="nav-link">السيارات</a></li>
+                    <li><a href="#rentals" class="nav-link">الإيجار</a></li>
+                    <li><a href="#engineers" class="nav-link">المهندسين</a></li>
+                     <li><a href="#maintenance-centers" class="nav-link">خده العمله </a></li> 
+                     <li><a href="#about" class="nav-link">حول</a></li>
+                </ul>
+
+                <!-- Right Section -->
+                <div class="nav-right">
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggle" title="تبديل المظهر">
+                        <i class="fas fa-moon"></i>
+                    </button>
+
+                    <!-- Language Toggle -->
+                    <button class="lang-toggle" id="langToggle">EN</button>
+
+                    <!-- Auth Buttons -->
+                    <div class="auth-buttons">
+                        <button class="btn-login" id="loginBtn">دخول</button>
+                        <button class="btn-signup">تسجيل</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section مع صورة خلفية -->
+    <section class="hero hero-fullbg">
+        <!-- Overlay للتحكم في شفافية الخلفية -->
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text">
+                    <h1>تجد سيارة أحلامك</h1>
+                    <p>منصة موثوقة لشراء وبيع واستئجار السيارات الفاخرة</p>
+                    
+                    <!-- Search Box -->
+                    <div class="search-box">
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="ابحث عن سيارتك المفضلة..."
+                            class="search-input"
+                        >
+                        <button class="btn-primary">
+                            <i class="fas fa-search"></i> بحث
+                        </button>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>5000+</h3>
+                            <p>سيارة متاحة</p>
+                        </div>
+                        <div class="stat">
+                            <h3>10000+</h3>
+                            <p>عميل راضي</p>
+                        </div>
+                        <div class="stat">
+                            <h3>99.9%</h3>
+                            <p>أمان معاملات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2>اختر ما تريد</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="navigateTo('cars')">
+                    <div class="category-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>شراء سيارة</h3>
+                    <p>اختر من آلاف السيارات الجديدة والمستعملة</p>
+                </div>
+
+                <div class="category-card" onclick="navigateTo('cars')">
+                    <div class="category-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>بيع سيارتك</h3>
+                    <p>بع سيارتك بسهولة وأمان</p>
+                </div>
+
+                <div class="category-card" onclick="navigateTo('rentals')">
+                    <div class="category-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>استأجر سيارة</h3>
+                    <p>احصل على سيارة للقيادة يومياً أو أسبوعياً</p>
+                </div>
+
+                <div class="category-card" onclick="navigateTo('services')">
+                    <div class="category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>صيانة السيارة</h3>
+                    <p>احم سيارتك بأفضل خدمات الصيانة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section class="featured-cars" id="cars">
+        <div class="container">
+            <div class="section-header">
+                <h2>السيارات المميزة</h2>
+                <a href="cars.html" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <input 
+                    type="text" 
+                    id="brandFilter" 
+                    placeholder="الماركة..."
+                    class="filter-input"
+                >
+                <select id="priceFilter" class="filter-select">
+                    <option value="">السعر</option>
+                    <option value="0-100000">أقل من 100,000</option>
+                    <option value="100000-300000">100,000 - 300,000</option>
+                    <option value="300000-500000">300,000 - 500,000</option>
+                    <option value="500000+">أكثر من 500,000</option>
+                </select>
+                <select id="fuelFilter" class="filter-select">
+                    <option value="">نوع الوقود</option>
+                    <option value="petrol">بنزين</option>
+                    <option value="diesel">ديزل</option>
+                    <option value="hybrid">هجين</option>
+                    <option value="electric">كهربائي</option>
+                </select>
+            </div>
+
+            <!-- Cars Grid -->
+            <div class="cars-grid" id="carsGrid">
+                <!-- Cars will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Rentals Section -->
+    <section class="rentals" id="rentals">
+        <div class="container">
+            <div class="section-header">
+                <h2>استأجر سيارة</h2>
+                <a href="rentals.html" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+            <!-- Rental Filters -->
+            <div class="rental-filters">
+                <div class="filter-group">
+                    <label>من التاريخ</label>
+                    <input type="date" id="pickupDate" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label>إلى التاريخ</label>
+                    <input type="date" id="dropoffDate" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label>نوع السيارة</label>
+                    <select id="rentalTypeFilter" class="filter-select">
+                        <option value="">اختر النوع</option>
+                        <option value="sedan">سيدان</option>
+                        <option value="suv">SUV</option>
+                        <option value="luxury">فاخرة</option>
+                    </select>
+                </div>
+                <button class="btn-primary">ابحث</button>
+            </div>
+
+            <!-- Rental Cars Grid -->
+            <div class="rental-cars-grid" id="rentalCarsGrid">
+                <!-- Rental cars will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>خدمات الصيانة</h2>
+                <a href="services.html" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-grid" id="servicesGrid">
+                <!-- Services will be loaded here -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="about">
+        <div class="container">
+            <h2>كيف يعمل DELTA CAR</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>إنشاء حساب</h3>
+                    <p>أنشئ حسابك مجاناً في ثواني معدودة</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>اختر سيارتك</h3>
+                    <p>استعرض آلاف السيارات المتاحة</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>الدفع الآمن</h3>
+                    <p>ادفع بأمان عبر وسائل دفع موثوقة</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>استمتع</h3>
+                    <p>احصل على سيارتك وتمتع برحلتك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- management -->
+    <section class="management-section" id="management">
+        <div class="container">
+            <div class="section-header">
+                <h2>الإدارة العليا</h2>
+                <p>القادة المسؤولون عن رؤية وتطوير CarHub Pro</p>
+            </div>
+            
+            <div class="slider-container">
+                <button class="slider-btn prev" id="mgmtPrevBtn" title="السابق"><i class="fas fa-chevron-right"></i></button>
+                <button class="slider-btn next" id="mgmtNextBtn" title="التالي"><i class="fas fa-chevron-left"></i></button>
+    
+                <div class="engineers-slider" id="mgmtSlider">
+                    <div class="engineer-card">
+                        <div class="engineer-img">
+                            <img src="Teamـcars/Manegment/‏تم مسحه ضوئيًا_‎20260208-2321_page-0001.jpg" alt="المدير التنفيذي">
+                        </div>
+                        <div class="engineer-info">
+                            <h3>أ/  محمد صلاح</h3>
+                            <p>المدير التنفيذي (CEO)</p>
+                            <a href="#" class="btn-call"><i class="fab fa-linkedin"></i> ملف LinkedIn</a>
+                        </div>
+                    </div>
+    
+                    <div class="engineer-card">
+                        <div class="engineer-img">
+                            <img src="Teamـcars/Manegment/‏تم مسحه ضوئيًا_‎20260208-2322_page-0001.jpg" alt="مديرة العمليات">
+                        </div>
+                        <div class="engineer-info">
+                            <h3>أ/ منى زكي</h3>
+                            <p>مديرة العمليات (COO)</p>
+                            <a href="#" class="btn-call"><i class="fab fa-linkedin"></i> ملف LinkedIn</a>
+                        </div>
+                    </div>
+    
+                    <div class="engineer-card">
+                        <div class="engineer-img">
+                            <img src="Teamـcars/Manegment/‏تم مسحه ضوئيًا_‎20260208-2319_page-0001.jpg" alt="المدير التقني">
+                        </div>
+                        <div class="engineer-info">
+                            <h3>أ/ كريم عبد العزيز</h3>
+                            <p>المدير التقني (CTO)</p>
+                            <a href="#" class="btn-call"><i class="fab fa-linkedin"></i> ملف LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- engineers -->
+    <section class="engineers-section" id="engineers">
+        <div class="container">
+            <div class="section-header">
+                <h2>نخبة المهندسين</h2>
+                <p>تواصل مع أفضل خبراء فحص وصيانة السيارات</p>
+            </div>
+            
+            <div class="slider-container">
+                <button class="slider-btn prev" id="prevBtn" title="السابق"><i class="fas fa-chevron-right"></i></button>
+                <button class="slider-btn next" id="nextBtn" title="التالي"><i class="fas fa-chevron-left"></i></button>
+    
+                <div class="engineers-slider" id="engineersSlider">
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/_تم مسحه ضوئيًا__20260208-2356_page-0001.jpg" alt="مهندس"></div>
+                        <div class="engineer-info"><h3>م/ أحمد حسن</h3><p>خبير محركات وتوربو</p><a href="tel:+201000000001" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/‏تم مسحه ضوئيًا_‎20260208-2350_page-0001.jpg" alt="مهندسة"></div>
+                        <div class="engineer-info"><h3>م/ سارة علي</h3><p>أخصائية برمجة أعطال</p><a href="tel:+201000000002" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/‏تم مسحه ضوئيًا_‎20260208-2351 2_page-0001.jpg" alt="مهندس"></div>
+                        <div class="engineer-info"><h3>م/ محمد صلاح</h3><p>خبير كهرباء سيارات</p><a href="tel:+201000000003" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/‏تم مسحه ضوئيًا_‎20260208-2351_page-0001.jpg" alt="مهندس"></div>
+                        <div class="engineer-info"><h3>م/ خالد محمود</h3><p>مهندس ميكانيكا هيدروليك</p><a href="tel:+201000000004" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/‏تم مسحه ضوئيًا_‎20260208-2352_page-0001.jpg" alt="مهندسة"></div>
+                        <div class="engineer-info"><h3>م/ ليلى إبراهيم</h3><p>فحص أنظمة الأمان</p><a href="tel:+201000000005" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/‏تم مسحه ضوئيًا_‎20260208-2354_page-0001.jpg" alt="مهندس"></div>
+                        <div class="engineer-info"><h3>م/ يوسف كريم</h3><p>خبير ناقل الحركة (الفتيس)</p><a href="tel:+201000000006" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/‏تم مسحه ضوئيًا_‎20260208-2355 2_page-0001.jpg" alt="مهندس"></div>
+                        <div class="engineer-info"><h3>م/ هاني رمزي</h3><p>أخصائي تكييف وتبريد</p><a href="tel:+201000000007" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/‏تم مسحه ضوئيًا_‎20260208-2355_page-0001.jpg" alt="مهندس"></div>
+                        <div class="engineer-info"><h3>م/ عادل إمام</h3><p>فحص سيارات مستعملة</p><a href="tel:+201000000008" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    <div class="engineer-card">
+                        <div class="engineer-img"><img src="Teamـcars/Engineer/‏تم مسحه ضوئيًا_‎20260208-2356 2_page-0001.jpg" alt="مهندس"></div>
+                        <div class="engineer-info"><h3>م/ مصطفى سعيد</h3><p>خبير سيارات كهربائية</p><a href="tel:+201000000009" class="btn-call"><i class="fas fa-phone"></i> اتصل الآن</a></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+            <!-- Call Centers -->
+            <section class="maintenance-centers" id="maintenance-centers">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>خدمة العملاء</h2>
+                        <p>نحن هنا للمساعدة دائماً</p>
+                    </div>
+                    
+                    <div class="slider-container">
+                        <button class="slider-btn prev" id="centerPrevBtn" title="السابق"><i class="fas fa-chevron-right"></i></button>
+                        <button class="slider-btn next" id="centerNextBtn" title="التالي"><i class="fas fa-chevron-left"></i></button>
+            
+                        <div class="engineers-slider" id="centersSlider">
+                            <div class="engineer-card">
+                                <div class="engineer-img">
+                                    <img src="Teamـcars/Callـsenter/1.jpg" alt="موظف">
+                                </div>
+                                <div class="engineer-info">
+                                    <h3>أ/ هاني شاكر</h3>
+                                    <p>مدير الفريق</p>
+                                    <a href="tel:0123456789" class="btn-call"><i class="fas fa-phone-alt"></i> تواصل معه</a>
+                                </div>
+                            </div>
+            
+                            <div class="engineer-card">
+                                <div class="engineer-img">
+                                    <img src="Teamـcars/Callـsenter/‏تم مسحه ضوئيًا_‎20260209-0043_page-0002.jpg" alt="موظف">
+                                </div>
+                                <div class="engineer-info">
+                                    <h3>م/ رامي صبري</h3>
+                                    <p>دعم فني</p>
+                                    <a href="tel:0112233445" class="btn-call"><i class="fas fa-phone-alt"></i> تواصل معه</a>
+                                </div>
+                            </div>
+            
+                            <div class="engineer-card">
+                                <div class="engineer-img">
+                                    <img src="Teamـcars/Callـsenter/‏تم مسحه ضوئيًا_‎20260209-0043_page-0003.jpg" alt="موظفة">
+                                </div>
+                                <div class="engineer-info">
+                                    <h3>أ/ مريم كمال</h3>
+                                    <p>علاقات عملاء</p>
+                                    <a href="tel:0109988776" class="btn-call"><i class="fas fa-phone-alt"></i> تواصل معها</a>
+                                </div>
+                            </div>
+            
+                            <div class="engineer-card">
+                                <div class="engineer-img">
+                                    <img src="Teamـcars/Callـsenter/‏تم مسحه ضوئيًا_‎20260209-0043_page-0004.jpg" alt="موظف">
+                                </div>
+                                <div class="engineer-info">
+                                    <h3>م/ إيهاب توفيق</h3>
+                                    <p>جودة الخدمة</p>
+                                    <a href="tel:0101122334" class="btn-call"><i class="fas fa-phone-alt"></i> تواصل معه</a>
+                                </div>
+                            </div>
+            
+                            <div class="engineer-card">
+                                <div class="engineer-img">
+                                    <img src="Teamـcars/Callـsenter/‏تم مسحه ضوئيًا_‎20260209-0043_page-0005.jpg" alt="موظف">
+                                </div>
+                                <div class="engineer-info">
+                                    <h3>أ/ تامر حسني</h3>
+                                    <p>مشرف مبيعات</p>
+                                    <a href="tel:0155667788" class="btn-call"><i class="fas fa-phone-alt"></i> تواصل معه</a>
+                                </div>
+                            </div>
+            
+                            <div class="engineer-card">
+                                <div class="engineer-img">
+                                    <img src="Teamـcars/Callـsenter/‏تم مسحه ضوئيًا_‎20260209-0043_page-0006.jpg" alt="موظف">
+                                </div>
+                                <div class="engineer-info">
+                                    <h3>م/ مصطفى قمر</h3>
+                                    <p>تنسيق العمليات</p>
+                                    <a href="tel:0120099887" class="btn-call"><i class="fas fa-phone-alt"></i> تواصل معه</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>آراء عملائنا</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"خدمة ممتازة جداً! عملية شراء السيارة كانت سهلة وآمنة جداً"</p>
+                    <div class="testimonial-author">
+                        <h4>أحمد محمد</h4>
+                        <p>القاهرة</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"استأجرت سيارة للرحلة العائلية وكانت التجربة رائعة جداً"</p>
+                    <div class="testimonial-author">
+                        <h4>فاطمة علي</h4>
+                        <p>الإسكندرية</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"بعت سيارتي بسهولة جداً والفريق كان محترف جداً"</p>
+                    <div class="testimonial-author">
+                        <h4>محمود حسن</h4>
+                        <p>الجيزة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>ابدأ رحلتك الآن</h2>
+            <p>انضم إلى آلاف العملاء الراضين عن خدمات DELTA CAR</p>
+            <button class="btn-primary btn-large">ابدأ الآن</button>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>DELTA CAR</h4>
+                    <p>منصة موثوقة لبيع وشراء واستئجار السيارات</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>روابط مفيدة</h4>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#cars" class="nav-link">السيارات</a></li>
+                        <li><a href="#rentals" class="nav-link">الإيجار</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>شروط قانونية</h4>
+                    <ul>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الاسترجاع</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>تابعنا</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 DELTA CAR. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>تسجيل الدخول</h2>
+            
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        required
+                        placeholder="أدخل بريدك الإلكتروني"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        required
+                        placeholder="أدخل كلمة المرور"
+                    >
+                </div>
+
+                <button type="submit" class="btn-primary btn-block">دخول</button>
+
+                <div class="form-divider">أو</div>
+
+                <button type="button" class="btn-google">
+                    <i class="fab fa-google"></i> دخول عبر Google
+                </button>
+            </form>
+
+            <p class="auth-link">
+                ليس لديك حساب؟ <a href="#">أنشئ حساب جديد</a>
+            </p>
+        </div>
+    </div>
+   
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

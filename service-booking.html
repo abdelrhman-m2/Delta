@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجز خدمة صيانة - CarHub Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .booking-container { padding: var(--spacing-xl) 0; max-width: 800px; margin: 0 auto; }
+        .booking-card { background: var(--bg-white); padding: var(--spacing-xl); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+        .service-summary { background: var(--bg-light); padding: var(--spacing-md); border-radius: var(--radius-md); margin-bottom: var(--spacing-lg); border-right: 5px solid var(--primary-color); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+        .btn-submit { margin-top: var(--spacing-lg); width: 100%; padding: 15px; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
+                    <i class="fas fa-car-alt"></i>
+                    <span>CarHub Pro</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="services.html" class="nav-link">الخدمات</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="booking-container">
+            <div class="booking-card">
+                <h2 style="margin-bottom: var(--spacing-md);">تأكيد حجز الخدمة</h2>
+                
+                <div id="serviceSummary" class="service-summary">
+                    <h3 id="serviceName">جاري تحميل الخدمة...</h3>
+                    <p id="servicePrice" style="color: var(--primary-color); font-weight: bold;"></p>
+                </div>
+
+                <form id="bookingForm" onsubmit="handleBooking(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>الاسم الكامل</label>
+                            <input type="text" id="userName" required placeholder="أدخل اسمك">
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="userPhone" required placeholder="01xxxxxxxxx">
+                        </div>
+                        <div class="form-group">
+                            <label>نوع السيارة</label>
+                            <input type="text" id="carModel" required placeholder="مثلاً: هيونداي إلنترا 2022">
+                        </div>
+                        <div class="form-group">
+                            <label>تاريخ الموعد</label>
+                            <input type="date" id="bookingDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: var(--spacing-md);">
+                        <label>ملاحظات إضافية (اختياري)</label>
+                        <textarea id="notes" rows="4" placeholder="اشرح لنا المشكلة بالتفصيل..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-submit">
+                        <i class="fas fa-calendar-check"></i> تأكيد موعد الحجز
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // جلب الـ ID من الرابط
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceId = urlParams.get('id');
+            
+            if (serviceId) {
+                const service = getServiceById(serviceId);
+                if (service) {
+                    document.getElementById('serviceName').textContent = service.name;
+                    document.getElementById('servicePrice').textContent = `التكلفة التقديرية: ${formatCurrency(service.price)}`;
+                }
+            } else {
+                window.location.href = 'services.html';
+            }
+        });
+
+        function handleBooking(event) {
+            event.preventDefault();
+            
+            // هنا نقوم بمحاكاة الإرسال
+            const name = document.getElementById('userName').value;
+            showToast(`شكراً يا ${name}! تم تسجيل حجزك بنجاح. سنتواصل معك للتأكيد.`);
+            
+            // العودة لصفحة الخدمات بعد 3 ثواني
+            setTimeout(() => {
+                window.location.href = 'services.html';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

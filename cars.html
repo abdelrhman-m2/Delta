@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السيارات - DELTA CAR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <div class="logo">
+                    <i class="fas fa-car-alt"></i>
+                    <span>DELTA CAR</span>
+                </div>
+
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#cars" class="nav-link">السيارات</a></li>
+                    <li><a href="index.html#rentals" class="nav-link">الإيجار</a></li>
+                    <li><a href="index.html#services" class="nav-link">الصيانة</a></li>
+                    <li><a href="index.html#about" class="nav-link">حول</a></li>
+                </ul>
+
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="lang-toggle" id="langToggle">EN</button>
+                    <div class="auth-buttons">
+                        <button class="btn-login" id="loginBtn">دخول</button>
+                        <button class="btn-signup">تسجيل</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section style="background-color: var(--bg-light); padding: 60px 0; margin-top: 20px;">
+        <div class="container">
+            <h1 style="color: var(--text-dark); margin: 0;">جميع السيارات</h1>
+            <p style="color: var(--text-light); margin: 10px 0 0 0;">استعرض مجموعتنا الكاملة من السيارات الفاخرة</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 250px 1fr; gap: 40px;">
+                <!-- Sidebar Filters -->
+                <aside>
+                    <div style="background-color: var(--bg-light); padding: 20px; border-radius: 12px;">
+                        <h3 style="margin-bottom: 20px;">تصفية النتائج</h3>
+
+                        <!-- Brand Filter -->
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 10px;">الماركة</label>
+                            <input type="text" id="brandFilter" placeholder="ابحث عن ماركة..." class="filter-input" style="width: 100%;">
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 10px;">السعر</label>
+                            <select id="priceFilter" class="filter-select" style="width: 100%;">
+                                <option value="">الكل</option>
+                                <option value="0-100000">أقل من 100,000</option>
+                                <option value="100000-300000">100,000 - 300,000</option>
+                                <option value="300000-500000">300,000 - 500,000</option>
+                                <option value="500000+">أكثر من 500,000</option>
+                            </select>
+                        </div>
+
+                        <!-- Fuel Type Filter -->
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 10px;">نوع الوقود</label>
+                            <select id="fuelFilter" class="filter-select" style="width: 100%;">
+                                <option value="">الكل</option>
+                                <option value="petrol">بنزين</option>
+                                <option value="diesel">ديزل</option>
+                                <option value="hybrid">هجين</option>
+                                <option value="electric">كهربائي</option>
+                            </select>
+                        </div>
+
+                        <!-- Year Filter -->
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 10px;">السنة</label>
+                            <select id="yearFilter" class="filter-select" style="width: 100%;">
+                                <option value="">الكل</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+
+                        <!-- Transmission Filter -->
+                        <div style="margin-bottom: 25px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 10px;">ناقل الحركة</label>
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <label style="display: flex; align-items: center;">
+                                    <input type="checkbox" value="automatic" class="transmission-filter" style="margin-right: 10px;">
+                                    أوتوماتيك
+                                </label>
+                                <label style="display: flex; align-items: center;">
+                                    <input type="checkbox" value="manual" class="transmission-filter" style="margin-right: 10px;">
+                                    عادي
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary" onclick="resetFilters()" style="width: 100%;">إعادة تعيين</button>
+                    </div>
+                </aside>
+
+                <!-- Cars Grid -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                        <div>
+                            <p style="color: var(--text-light);">تم العثور على <span id="carCount">0</span> سيارة</p>
+                        </div>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="">ترتيب حسب</option>
+                            <option value="price-asc">السعر (الأقل أولاً)</option>
+                            <option value="price-desc">السعر (الأعلى أولاً)</option>
+                            <option value="newest">الأحدث</option>
+                            <option value="rating">التقييم</option>
+                        </select>
+                    </div>
+
+                    <div class="cars-grid" id="carsGrid">
+                        <!-- Cars will be loaded here -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 40px;" id="pagination">
+                        <!-- Pagination buttons will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>DELTA CAR</h4>
+                    <p>منصة موثوقة لبيع وشراء واستئجار السيارات</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط مفيدة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="cars.html">السيارات</a></li>
+                        <li><a href="rentals.html">الإيجار</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>شروط قانونية</h4>
+                    <ul>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعنا</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DELTA CAR. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" required placeholder="أدخل بريدك الإلكتروني">
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" required placeholder="أدخل كلمة المرور">
+                </div>
+                <button type="submit" class="btn-primary btn-block">دخول</button>
+                <div class="form-divider">أو</div>
+                <button type="button" class="btn-google">
+                    <i class="fab fa-google"></i> دخول عبر Google
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let currentPage = 1;
+        const carsPerPage = 12;
+        let allCars = getCarsData();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCarsPage();
+            setupCarsFilters();
+        });
+
+        function loadCarsPage() {
+            const startIndex = (currentPage - 1) * carsPerPage;
+            const endIndex = startIndex + carsPerPage;
+            const pageCars = allCars.slice(startIndex, endIndex);
+            
+            displayCars(pageCars);
+            document.getElementById('carCount').textContent = allCars.length;
+            setupPagination();
+        }
+
+        function setupCarsFilters() {
+            document.getElementById('brandFilter')?.addEventListener('input', applyAllFilters);
+            document.getElementById('priceFilter')?.addEventListener('change', applyAllFilters);
+            document.getElementById('fuelFilter')?.addEventListener('change', applyAllFilters);
+            document.getElementById('yearFilter')?.addEventListener('change', applyAllFilters);
+            document.getElementById('sortFilter')?.addEventListener('change', applySorting);
+        }
+
+        function applyAllFilters() {
+            currentPage = 1;
+            const brand = document.getElementById('brandFilter')?.value.toLowerCase() || '';
+            const priceRange = document.getElementById('priceFilter')?.value || '';
+            const fuelType = document.getElementById('fuelFilter')?.value || '';
+            const year = document.getElementById('yearFilter')?.value || '';
+
+            allCars = getCarsData().filter(car => {
+                let match = true;
+
+                if (brand && !car.brand.toLowerCase().includes(brand)) match = false;
+                if (fuelType && car.fuelType.toLowerCase() !== fuelType) match = false;
+                if (year && car.year.toString() !== year) match = false;
+
+                if (priceRange) {
+                    if (priceRange === '0-100000' && car.price >= 100000) match = false;
+                    if (priceRange === '100000-300000' && (car.price < 100000 || car.price >= 300000)) match = false;
+                    if (priceRange === '300000-500000' && (car.price < 300000 || car.price >= 500000)) match = false;
+                    if (priceRange === '500000+' && car.price < 500000) match = false;
+                }
+
+                return match;
+            });
+
+            loadCarsPage();
+        }
+
+        function applySorting() {
+            const sortValue = document.getElementById('sortFilter').value;
+            
+            if (sortValue === 'price-asc') {
+                allCars.sort((a, b) => a.price - b.price);
+            } else if (sortValue === 'price-desc') {
+                allCars.sort((a, b) => b.price - a.price);
+            } else if (sortValue === 'newest') {
+                allCars.sort((a, b) => b.year - a.year);
+            } else if (sortValue === 'rating') {
+                allCars.sort((a, b) => b.rating - a.rating);
+            }
+
+            currentPage = 1;
+            loadCarsPage();
+        }
+
+        function setupPagination() {
+            const totalPages = Math.ceil(allCars.length / carsPerPage);
+            const paginationDiv = document.getElementById('pagination');
+            paginationDiv.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.textContent = i;
+                btn.className = i === currentPage ? 'btn-primary' : 'btn-secondary';
+                btn.onclick = () => {
+                    currentPage = i;
+                    loadCarsPage();
+                    window.scrollTo(0, 0);
+                };
+                paginationDiv.appendChild(btn);
+            }
+        }
+
+        function resetFilters() {
+            document.getElementById('brandFilter').value = '';
+            document.getElementById('priceFilter').value = '';
+            document.getElementById('fuelFilter').value = '';
+            document.getElementById('yearFilter').value = '';
+            document.getElementById('sortFilter').value = '';
+            currentPage = 1;
+            allCars = getCarsData();
+            loadCarsPage();
+        }
+    </script>
+</body>
+</html>

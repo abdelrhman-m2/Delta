@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الإيجار - CarHub Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .rental-detail-container { padding: var(--spacing-xl) 0; }
+        .detail-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--spacing-xl); }
+        .car-main-img { width: 100%; border-radius: var(--radius-lg); object-fit: cover; height: 400px; box-shadow: var(--shadow-md); }
+        .booking-card { background: var(--bg-white); padding: var(--spacing-lg); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); position: sticky; top: 100px; }
+        .price-tag { font-size: 1.5rem; color: var(--primary-color); font-weight: bold; margin-bottom: var(--spacing-md); }
+        .specs-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-md); margin: var(--spacing-lg) 0; }
+        .spec-item { display: flex; align-items: center; gap: 10px; color: var(--text-light); }
+        .spec-item i { color: var(--primary-color); width: 20px; }
+        @media (max-width: 768px) { .detail-grid { grid-template-columns: 1fr; } .car-main-img { height: 250px; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <div class="logo">
+                    <i class="fas fa-car-alt"></i>
+                    <span>CarHub Pro</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="rentals.html" class="nav-link">العودة للإيجارات</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container rental-detail-container">
+        <div class="detail-grid">
+            <div class="car-info-section">
+                <img id="carImage" src="" alt="Car Image" class="car-main-img">
+                <h1 id="carName" style="margin-top: 20px;"></h1>
+                <p id="carOwner" style="color: var(--text-light);"></p>
+                
+                <div class="specs-list">
+                    <div class="spec-item"><i class="fas fa-calendar-alt"></i> موديل: <span id="carYear"></span></div>
+                    <div class="spec-item"><i class="fas fa-users"></i> ركاب: <span id="carSeats"></span></div>
+                    <div class="spec-item"><i class="fas fa-gas-pump"></i> الوقود: <span id="carFuel"></span></div>
+                    <div class="spec-item"><i class="fas fa-cog"></i> ناقل الحركة: أوتوماتيك</div>
+                </div>
+
+                <h3>عن هذه السيارة</h3>
+                <p style="line-height: 1.6; color: var(--text-light);">
+                    استمتع بتجربة قيادة فريدة مع هذه السيارة المميزة. تتميز السيارة بنظافتها الفائقة وصيانتها الدورية لضمان أعلى مستويات الأمان والراحة لك ولعائلتك خلال فترة الإيجار.
+                </p>
+            </div>
+
+            <div class="booking-section">
+                <div class="booking-card">
+                    <div class="price-tag"><span id="dailyRate"></span> <small>/ يومياً</small></div>
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin-bottom: 20px;">
+                    
+                    <div class="form-group">
+                        <label>تاريخ الاستلام</label>
+                        <input type="date" class="form-control" style="width: 100%; padding: 10px; margin-bottom: 15px;">
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ التسليم</label>
+                        <input type="date" class="form-control" style="width: 100%; padding: 10px; margin-bottom: 15px;">
+                    </div>
+
+                    <button class="btn-primary btn-block" onclick="confirmBooking()" style="width: 100%; padding: 15px;">احجز الآن</button>
+                    
+                    <div style="margin-top: 20px; font-size: 0.85rem; color: var(--text-light); text-align: center;">
+                        <p><i class="fas fa-shield-alt"></i> إلغاء مجاني قبل 24 ساعة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // جلب ID السيارة من الرابط
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('id') || 101;
+            
+            // جلب بيانات السيارة من data.js
+            const car = getRentalCarById(carId);
+
+            if (car) {
+                document.getElementById('carImage').src = car.image;
+                document.getElementById('carName').textContent = `${car.brand} ${car.model}`;
+                document.getElementById('carYear').textContent = car.year;
+                document.getElementById('carSeats').textContent = car.seats || '5';
+                document.getElementById('carFuel').textContent = car.fuelType;
+                document.getElementById('carOwner').textContent = `بواسطة: ${car.owner}`;
+                document.getElementById('dailyRate').textContent = formatCurrency(car.dailyRate);
+            }
+        });
+
+        function confirmBooking() {
+            showToast('شكراً لك! تم استلام طلب الحجز وسنتواصل معك قريباً.');
+        }
+    </script>
+</body>
+</html>

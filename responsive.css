@@ -1,0 +1,714 @@
+/* ==========================================
+   CarHub Pro - Responsive CSS
+   ========================================== */
+
+/* Tablet Devices (768px to 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 500px;
+        flex-direction: column;
+        padding: var(--spacing-xl);
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .hero-text p {
+        font-size: 1.125rem;
+    }
+
+    .hero-background {
+        width: 100%;
+        opacity: 0.1;
+    }
+
+    /* Navigation */
+    .navbar-wrapper {
+        padding: var(--spacing-md);
+    }
+
+    .nav-links {
+        gap: var(--spacing-lg);
+    }
+
+    /* Grid Items */
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cars-grid,
+    .rental-cars-grid,
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-grid,
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Cards */
+    .car-card,
+    .service-card,
+    .category-card {
+        padding: var(--spacing-lg);
+    }
+
+    .car-image-container {
+        height: 200px;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Buttons */
+    .btn-primary {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .filter-input,
+    .filter-select {
+        min-width: 100%;
+    }
+
+    /* Modal */
+    .modal-content {
+        max-width: 500px;
+        width: 90%;
+    }
+}
+
+/* Mobile Devices (480px to 768px) */
+@media (max-width: 768px) {
+    /* Root */
+    :root {
+        --spacing-lg: 1rem;
+        --spacing-xl: 1.5rem;
+        --spacing-2xl: 2rem;
+    }
+
+    /* Global */
+    body {
+        font-size: 0.95rem;
+    }
+
+    .container {
+        padding: 0 var(--spacing-md);
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.125rem;
+    }
+
+    /* Navigation */
+    .menu-toggle {
+        display: flex;
+    }
+
+    .navbar-wrapper {
+        padding: var(--spacing-md);
+    }
+
+    .nav-links {
+        position: fixed;
+        left: 0;
+        top: 60px;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--bg-white);
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+        gap: 0;
+        display: none;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: var(--spacing-lg) var(--spacing-lg);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-right {
+        gap: var(--spacing-sm);
+        font-size: 0.875rem;
+    }
+
+    .auth-buttons {
+        gap: var(--spacing-sm);
+    }
+
+    .btn-login,
+    .btn-signup {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.875rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 400px;
+        padding: var(--spacing-xl);
+    }
+
+    .hero-text h1 {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .search-box {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .search-input {
+        padding: var(--spacing-md);
+        width: 100%;
+    }
+
+    .search-box .btn-primary {
+        width: 100%;
+    }
+
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .stat h3 {
+        font-size: 1.5rem;
+    }
+
+    .hero-background {
+        display: none;
+    }
+
+    /* Sections */
+    .categories,
+    .featured-cars,
+    .rentals,
+    .services,
+    .how-it-works,
+    .testimonials,
+    .cta-section {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .section-header h2 {
+        margin: 0;
+    }
+
+    /* Grids */
+    .categories-grid,
+    .cars-grid,
+    .rental-cars-grid,
+    .services-grid,
+    .steps-grid,
+    .testimonials-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Cards */
+    .category-card,
+    .car-card,
+    .service-card,
+    .testimonial-card,
+    .step {
+        padding: var(--spacing-lg);
+    }
+
+    .car-image-container {
+        height: 180px;
+    }
+
+    .car-specs {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .car-footer {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .car-price {
+        font-size: 1.25rem;
+    }
+
+    .btn-view {
+        width: 100%;
+    }
+
+    /* Filters */
+    .filters,
+    .rental-filters {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .filter-input,
+    .filter-select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .rental-filters {
+        grid-template-columns: 1fr;
+    }
+
+    /* Buttons */
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        padding: var(--spacing-md);
+    }
+
+    .btn-google {
+        width: 100%;
+    }
+
+    .auth-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-login,
+    .btn-signup {
+        width: 100%;
+    }
+
+    /* Forms */
+    .auth-form {
+        gap: var(--spacing-md);
+    }
+
+    .form-group input {
+        padding: var(--spacing-md);
+    }
+
+    /* Footer */
+    .footer-grid {
+        gap: var(--spacing-lg);
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    /* Modal */
+    .modal-content {
+        max-width: 100%;
+        width: 95%;
+        padding: var(--spacing-lg);
+    }
+
+    .modal-close {
+        top: var(--spacing-md);
+        right: var(--spacing-md);
+    }
+
+    /* Step Numbers */
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    /* Service Icon */
+    .service-icon {
+        font-size: 2.5rem;
+    }
+
+    .category-icon {
+        font-size: 2rem;
+    }
+
+    /* Responsive Text */
+    .hero-stats .stat p {
+        font-size: 0.875rem;
+    }
+
+    .testimonial-card p {
+        font-size: 0.95rem;
+    }
+
+    /* Rental Price Badge */
+    .rental-price {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.875rem;
+    }
+}
+
+/* Small Mobile Devices (320px to 480px) */
+@media (max-width: 480px) {
+    /* Root */
+    :root {
+        --spacing-md: 0.75rem;
+        --spacing-lg: 1rem;
+        --spacing-xl: 1.25rem;
+    }
+
+    /* Global */
+    body {
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    /* Navigation */
+    .logo {
+        font-size: 1.125rem;
+    }
+
+    .logo i {
+        font-size: 1.25rem;
+    }
+
+    .navbar-wrapper {
+        padding: var(--spacing-sm);
+    }
+
+    .nav-right {
+        gap: var(--spacing-xs);
+    }
+
+    .theme-toggle,
+    .lang-toggle {
+        font-size: 1rem;
+        padding: var(--spacing-xs);
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 350px;
+        padding: var(--spacing-md);
+    }
+
+    .hero-text h1 {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .hero-stats {
+        gap: var(--spacing-sm);
+    }
+
+    .stat h3 {
+        font-size: 1.25rem;
+    }
+
+    .stat p {
+        font-size: 0.75rem;
+    }
+
+    /* Search Box */
+    .search-box {
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs);
+    }
+
+    .search-input {
+        padding: var(--spacing-sm);
+        font-size: 0.9rem;
+    }
+
+    /* Sections */
+    .categories,
+    .featured-cars,
+    .rentals,
+    .services,
+    .how-it-works,
+    .testimonials,
+    .cta-section {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .section-header h2 {
+        font-size: 1.25rem;
+    }
+
+    /* Cards */
+    .category-card,
+    .car-card,
+    .service-card,
+    .testimonial-card {
+        padding: var(--spacing-md);
+    }
+
+    .car-image-container {
+        height: 150px;
+    }
+
+    .car-image-container i {
+        font-size: 100px;
+    }
+
+    .car-title {
+        font-size: 1rem;
+    }
+
+    .car-brand {
+        font-size: 0.75rem;
+    }
+
+    .car-specs {
+        gap: var(--spacing-xs);
+    }
+
+    .spec {
+        font-size: 0.75rem;
+    }
+
+    .car-price {
+        font-size: 1.125rem;
+    }
+
+    .car-price-unit {
+        font-size: 0.75rem;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .btn-view {
+        width: 100%;
+        padding: var(--spacing-sm);
+        font-size: 0.85rem;
+    }
+
+    /* Filter */
+    .filters,
+    .rental-filters {
+        gap: var(--spacing-sm);
+    }
+
+    .filter-input,
+    .filter-select {
+        padding: var(--spacing-sm);
+        font-size: 0.9rem;
+    }
+
+    /* Steps */
+    .step-number {
+        width: 45px;
+        height: 45px;
+        font-size: 1.125rem;
+    }
+
+    .step h3 {
+        font-size: 1rem;
+    }
+
+    .step p {
+        font-size: 0.85rem;
+    }
+
+    /* Service */
+    .service-icon {
+        font-size: 2rem;
+    }
+
+    .service-card h3 {
+        font-size: 1rem;
+    }
+
+    .service-card p {
+        font-size: 0.85rem;
+    }
+
+    /* Category Icon */
+    .category-icon {
+        font-size: 1.75rem;
+    }
+
+    .category-card h3 {
+        font-size: 1rem;
+    }
+
+    .category-card p {
+        font-size: 0.85rem;
+    }
+
+    /* Testimonial */
+    .testimonial-card p {
+        font-size: 0.85rem;
+    }
+
+    .testimonial-author h4 {
+        font-size: 0.95rem;
+    }
+
+    .testimonial-author p {
+        font-size: 0.75rem;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 98%;
+        padding: var(--spacing-lg);
+    }
+
+    .modal h2 {
+        font-size: 1.25rem;
+    }
+
+    /* Forms */
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input {
+        padding: var(--spacing-sm);
+        font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer {
+        padding: var(--spacing-lg) 0 var(--spacing-md);
+    }
+
+    .footer-section h4 {
+        font-size: 1rem;
+    }
+
+    .footer-section p {
+        font-size: 0.85rem;
+    }
+
+    .footer-section ul li {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .footer-section a {
+        font-size: 0.85rem;
+    }
+
+    .social-links {
+        gap: var(--spacing-md);
+    }
+
+    .social-links a {
+        width: 35px;
+        height: 35px;
+        font-size: 0.875rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.75rem;
+        padding-top: var(--spacing-md);
+    }
+
+    /* Toast */
+    .toast {
+        width: 90%;
+        font-size: 0.9rem;
+    }
+
+    /* Utility */
+    .btn-large {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+}
+
+/* Landscape Orientation (Mobile) */
+@media (max-height: 600px) and (max-width: 768px) {
+    .hero {
+        min-height: 300px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.25rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .hero-stats {
+        display: none;
+    }
+}

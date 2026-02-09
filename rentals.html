@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإيجار - DELTA CAR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <div class="logo">
+                    <i class="fas fa-car-alt"></i>
+                    <span>DELTA CAR</span>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="cars.html" class="nav-link">السيارات</a></li>
+                    <li><a href="rentals.html" class="nav-link">الإيجار</a></li>
+                </ul>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                    <button class="lang-toggle" id="langToggle">EN</button>
+                    <div class="auth-buttons">
+                        <button class="btn-login" id="loginBtn">دخول</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section style="background-color: var(--bg-light); padding: 60px 0; margin-top: 20px;">
+        <div class="container">
+            <h1 style="color: var(--text-dark); margin: 0;">استأجر سيارتك</h1>
+            <p style="color: var(--text-light); margin: 10px 0 0 0;">اختر من مجموعة واسعة من السيارات المتاحة للإيجار</p>
+        </div>
+    </section>
+
+    <!-- Booking Filters -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div class="rental-filters" style="background-color: var(--bg-light); padding: 30px; border-radius: 12px;">
+                <div class="filter-group">
+                    <label>من التاريخ</label>
+                    <input type="date" id="pickupDate" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label>إلى التاريخ</label>
+                    <input type="date" id="dropoffDate" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label>نوع السيارة</label>
+                    <select id="carTypeFilter" class="filter-select">
+                        <option value="">جميع الأنواع</option>
+                        <option value="sedan">سيدان</option>
+                        <option value="suv">SUV</option>
+                        <option value="luxury">فاخرة</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>نطاق السعر</label>
+                    <select id="priceRangeFilter" class="filter-select">
+                        <option value="">الكل</option>
+                        <option value="0-500">أقل من 500 جنيه</option>
+                        <option value="500-1000">500 - 1000 جنيه</option>
+                        <option value="1000+">أكثر من 1000 جنيه</option>
+                    </select>
+                </div>
+                <button class="btn-primary" onclick="applyRentalFilters()">بحث</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rental Cars Grid -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <p style="color: var(--text-light);">تم العثور على <span id="rentalCount">0</span> سيارة</p>
+                <select id="rentalSortFilter" class="filter-select" onchange="sortRentalCars()">
+                    <option value="">ترتيب حسب</option>
+                    <option value="price-asc">السعر (الأقل أولاً)</option>
+                    <option value="price-desc">السعر (الأعلى أولاً)</option>
+                    <option value="rating">التقييم</option>
+                </select>
+            </div>
+
+            <div class="rental-cars-grid" id="rentalCarsGrid">
+                <!-- Rental cars will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How Rental Works -->
+    <section style="padding: 40px 0; background-color: var(--bg-light);">
+        <div class="container">
+            <h2 style="margin-bottom: 30px; text-align: center;">كيفية الإيجار</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>اختر السيارة</h3>
+                    <p>استعرض السيارات المتاحة واختر ما يناسبك</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>حدد التاريخ</h3>
+                    <p>حدد تاريخ الاستلام والتسليم</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>ادفع بأمان</h3>
+                    <p>ادفع بطريقة آمنة وموثوقة</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>استمتع</h3>
+                    <p>استلم السيارة وتمتع برحلتك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>DELTA CAR</h4>
+                    <p>منصة موثوقة لبيع وشراء واستئجار السيارات</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط مفيدة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="cars.html">السيارات</a></li>
+                        <li><a href="rentals.html">الإيجار</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DELTA CAR. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" required>
+                </div>
+                <button type="submit" class="btn-primary btn-block">دخول</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let allRentalCars = getRentalCarsData();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayRentalCars(allRentalCars);
+            document.getElementById('rentalCount').textContent = allRentalCars.length;
+        });
+
+        function applyRentalFilters() {
+            const carType = document.getElementById('carTypeFilter').value;
+            const priceRange = document.getElementById('priceRangeFilter').value;
+
+            let filtered = getRentalCarsData();
+
+            if (carType) {
+                filtered = filtered.filter(car => {
+                    const model = car.model.toLowerCase();
+                    if (carType === 'sedan') return model.includes('camry') || model.includes('elantra');
+                    if (carType === 'suv') return model.includes('sportage');
+                    if (carType === 'luxury') return model.includes('a6') || model.includes('e-class');
+                    return true;
+                });
+            }
+
+            if (priceRange) {
+                filtered = filtered.filter(car => {
+                    if (priceRange === '0-500') return car.dailyRate < 500;
+                    if (priceRange === '500-1000') return car.dailyRate >= 500 && car.dailyRate < 1000;
+                    if (priceRange === '1000+') return car.dailyRate >= 1000;
+                    return true;
+                });
+            }
+
+            allRentalCars = filtered;
+            displayRentalCars(filtered);
+            document.getElementById('rentalCount').textContent = filtered.length;
+        }
+
+        function sortRentalCars() {
+            const sortValue = document.getElementById('rentalSortFilter').value;
+
+            if (sortValue === 'price-asc') {
+                allRentalCars.sort((a, b) => a.dailyRate - b.dailyRate);
+            } else if (sortValue === 'price-desc') {
+                allRentalCars.sort((a, b) => b.dailyRate - a.dailyRate);
+            }
+
+            displayRentalCars(allRentalCars);
+        }
+    </script>
+</body>
+</html>

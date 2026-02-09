@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخدمات - DELTA CAR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .mechanic-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <div class="logo">
+                    <i class="fas fa-car-alt"></i>
+                    <span>DELTA CAR</span>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="cars.html" class="nav-link">السيارات</a></li>
+                    <li><a href="services.html" class="nav-link">الخدمات</a></li>
+                </ul>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                    <button class="lang-toggle" id="langToggle">EN</button>
+                    <div class="auth-buttons">
+                        <button class="btn-login" id="loginBtn">دخول</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section style="background-color: var(--bg-light); padding: 60px 0; margin-top: 20px;">
+        <div class="container">
+            <h1 style="color: var(--text-dark); margin: 0;">خدمات الصيانة</h1>
+            <p style="color: var(--text-light); margin: 10px 0 0 0;">احم سيارتك بأفضل خدمات الصيانة المتوفرة</p>
+        </div>
+    </section>
+
+    <!-- Services Filters -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
+                <select id="categoryFilter" class="filter-select" onchange="filterServices()">
+                    <option value="">جميع الخدمات</option>
+                    <option value="maintenance">صيانة</option>
+                    <option value="repair">إصلاح</option>
+                    <option value="inspection">فحص</option>
+                </select>
+                <select id="priceServiceFilter" class="filter-select" onchange="filterServices()">
+                    <option value="">جميع الأسعار</option>
+                    <option value="0-500">أقل من 500</option>
+                    <option value="500-1000">500 - 1000</option>
+                    <option value="1000+">أكثر من 1000</option>
+                </select>
+                <input type="text" id="mechanicSearch" placeholder="ابحث عن ميكانيكي..." class="filter-input" onkeyup="filterServices()">
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-grid" id="servicesGrid">
+                <!-- Services will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Mechanics Section -->
+    <section style="padding: 40px 0; background-color: var(--bg-light);">
+        <div class="container">
+            <h2 style="margin-bottom: 30px;">أفضل الميكانيكيين</h2>
+            <div id="mechanicsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <!-- Mechanics will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>DELTA CAR</h4>
+                    <p>منصة موثوقة لبيع وشراء واستئجار السيارات</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط مفيدة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="cars.html">السيارات</a></li>
+                        <li><a href="services.html">الخدمات</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DELTA CAR. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" required>
+                </div>
+                <button type="submit" class="btn-primary btn-block">دخول</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let allServices = getServicesData();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayServices(allServices);
+            displayMechanics();
+        });
+
+        function displayMechanics() {
+            const mechanics = getMechanicsData();
+            const grid = document.getElementById('mechanicsGrid');
+            
+            mechanics.forEach(mechanic => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background-color: var(--bg-white); padding: 30px; border-radius: 12px; box-shadow: var(--shadow-md);';
+                
+                card.innerHTML = `
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="${mechanic.image}" alt="${mechanic.name}" class="mechanic-avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="mechanic-avatar-fallback" style="display:none;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h3 style="margin: 0 0 5px 0;">${mechanic.name}</h3>
+                            <p style="margin: 0; color: var(--text-light); font-size: 0.875rem;">
+                                <i class="fas fa-star" style="color: #FFC107;"></i> ${mechanic.rating} (${mechanic.reviews} تقييم)
+                            </p>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-light); margin-bottom: 20px;">${mechanic.specializations.join(' • ')}</p>
+                    <p style="color: var(--text-light); margin-bottom: 20px;">
+                        <i class="fas fa-map-marker-alt"></i> ${mechanic.address}
+                    </p>
+                    <button class="btn-primary" style="width: 100%;">اتصل الآن</button>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function filterServices() {
+            const category = document.getElementById('categoryFilter').value;
+            const priceRange = document.getElementById('priceServiceFilter').value;
+            const mechanicSearch = document.getElementById('mechanicSearch').value.toLowerCase();
+
+            let filtered = getServicesData();
+
+            if (category) {
+                filtered = filtered.filter(service => {
+                    if (category === 'maintenance') return [201, 206, 207].includes(service.id);
+                    if (category === 'repair') return [203, 205, 208, 209, 210].includes(service.id);
+                    if (category === 'inspection') return [202].includes(service.id);
+                    return true;
+                });
+            }
+
+            if (priceRange) {
+                filtered = filtered.filter(service => {
+                    if (priceRange === '0-500') return service.price < 500;
+                    if (priceRange === '500-1000') return service.price >= 500 && service.price < 1000;
+                    if (priceRange === '1000+') return service.price >= 1000;
+                    return true;
+                });
+            }
+
+            if (mechanicSearch) {
+                filtered = filtered.filter(service => 
+                    service.name.toLowerCase().includes(mechanicSearch)
+                );
+            }
+
+            displayServices(filtered);
+        }
+    </script>
+</body>
+</html>
